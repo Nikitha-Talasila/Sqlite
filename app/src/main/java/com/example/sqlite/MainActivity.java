@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    EditText name, contact, dob;
+    EditText name, id, pname;
     Button insert, delete, update, view;
     DBhelper db;
 
@@ -23,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         name = findViewById(R.id.name);
-        contact = findViewById(R.id.num);
-        dob = findViewById(R.id.dob);
+        id = findViewById(R.id.id);
+        pname = findViewById(R.id.pname);
+//        type = findViewById(R.id.type);
         insert = findViewById(R.id.insert);
         delete = findViewById(R.id.delete);
         update = findViewById(R.id.update);
@@ -36,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nametxt = name.getText().toString();
-                String contacttxt = contact.getText().toString();
-                String dobtxt = dob.getText().toString();
+                String idtxt = id.getText().toString();
+                String pnametxt = pname.getText().toString();
+//                String typetxt = type.getText().toString();
 
-                boolean checkinsert = db.insertData(nametxt, contacttxt, dobtxt);
+                boolean checkinsert = db.insertData(nametxt, idtxt, pnametxt);
 
                 if (checkinsert == true)
                     Toast.makeText(MainActivity.this, "New entry", Toast.LENGTH_SHORT).show();
@@ -53,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nametxt = name.getText().toString();
-                String contacttxt = contact.getText().toString();
-                String dobtxt = dob.getText().toString();
+                String contacttxt = id.getText().toString();
+                String dobtxt = pname.getText().toString();
 
                 boolean checkupdate = db.UpdateData(nametxt, contacttxt, dobtxt);
 
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 StringBuffer buffer = new StringBuffer();
                 while(res.moveToNext())
                 {
-                    buffer.append("Name: "+res.getString(0)+"\n"+"Contact : "+res.getString(1)+"\n"+"dob : "+res.getString(2)+"\n\n");
+                    buffer.append("Vendor Name: "+res.getString(0)+"\n"+"ID  : "+res.getString(1)+"\n"+"Product Name : "+res.getString(2)+"\n\n");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

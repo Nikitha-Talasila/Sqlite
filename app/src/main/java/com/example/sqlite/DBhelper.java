@@ -32,6 +32,7 @@ public class DBhelper extends SQLiteOpenHelper {
         contentValues.put("name", name);
         contentValues.put("contact", contact);
         contentValues.put("dob", dob);
+//        contentValues.put("type", type);
         long result = DB.insert("Userdetails", null, contentValues);
         if (result == -1)
             return false;
